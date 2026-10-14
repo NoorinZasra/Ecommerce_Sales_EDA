@@ -1,13 +1,23 @@
 import sys
-import types
-sys.modules['pyarrow'] = types.ModuleType('pyarrow')
-sys.modules['pyarrow'].__version__ = '25.0.0'
-import sys
-sys.modules['pyarrow'] = type('sys', (), {'__version__': '25.0.0'})
+from unittest.mock import MagicMock
+
+# 1. Structural bypass trick for cutting-edge cloud server dependencies
+mock_pyarrow = MagicMock()
+mock_pyarrow.__version__ = '18.0.0'
+mock_pyarrow.compute = MagicMock()
+mock_pyarrow.lib = MagicMock()
+
+# Inject the main module and all nested paths pandas checks for
+sys.modules['pyarrow'] = mock_pyarrow
+sys.modules['pyarrow.compute'] = mock_pyarrow.compute
+sys.modules['pyarrow.lib'] = mock_pyarrow.lib
+
+# 2. Main libraries follow right below
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 
 # 1. Configure browser tab properties
 st.set_page_config(page_title="Enterprise Retail Analytics", page_icon="📈", layout="wide")
