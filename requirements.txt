@@ -1,6 +1,6 @@
-streamlit>=1.40.0
-pandas
-pyarrow==14.0.1
-matplotlib
-seaborn
-openpyxl
+streamlit==1.35.0
+pandas==2.2.2
+pyarrow==16.1.0
+matplotlib==3.8.4
+seaborn==0.13.2
+openpyxl==3.1.2
