@@ -1,0 +1,6 @@
+streamlit>=1.40.0
+pandas==2.2.3
+pyarrow==18.1.0
+matplotlib
+seaborn
+openpyxl
