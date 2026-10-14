@@ -1,4 +1,8 @@
 import sys
+import types
+sys.modules['pyarrow'] = types.ModuleType('pyarrow')
+sys.modules['pyarrow'].__version__ = '25.0.0'
+import sys
 sys.modules['pyarrow'] = type('sys', (), {'__version__': '25.0.0'})
 import streamlit as st
 import pandas as pd
